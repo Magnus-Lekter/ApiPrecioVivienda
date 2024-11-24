@@ -1,15 +1,11 @@
-import os
+# This file is used to create the Flask app instance and configure it.
 from flask import Flask
-from flask import request, jsonify
-import traceback
-import pandas as pd
-import numpy as np
-import sys
-import joblib
-import logging
 from flask_cors import CORS, cross_origin
 
 def create_app():
     app=Flask(__name__)
-    CORS(app, resources={r"/*": {"origins": "*"}})
+    CORS(app)
+    # Registrar las rutas
+    from .routes import main
+    app.register_blueprint(main)
     return app

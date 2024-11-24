@@ -1,5 +1,5 @@
 # Dependencies
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Blueprint
 #from sklearn.externals import joblib
 import traceback
 import pandas as pd
@@ -10,8 +10,13 @@ import logging
 from flask_cors import CORS, cross_origin
 from app import create_app
 
+main = Blueprint('main', __name__)
 app = create_app()
 CORS(app, resources={r"/*": {"origins": "*"}})
+# Cargar el modelo y las columnas
+model = joblib.load('modelo_vivienda.pkl')
+model_columns = joblib.load('model_columns.pkl')
+
 @app.route('/')
 def home():
     return jsonify({'mensaje':"API para prediccion de precios de vivienda"})
@@ -19,8 +24,8 @@ def home():
 @app.route('/predict', methods=['POST'])
 #@cross_origin()
 def predict():
-    global model
-    global model_columns
+    #global model
+    #global model_columns
     if model:
         try:
             if request.method == 'POST':
