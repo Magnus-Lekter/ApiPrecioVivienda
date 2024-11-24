@@ -8,16 +8,16 @@ import sys
 import joblib
 import logging
 from flask_cors import CORS, cross_origin
-from app.__init__ import create_app
+from app import create_app
 
 app = create_app()
 
 @app.route('/')
-@cross_origin()
 def home():
-    return jsonify({'mensaje':"API para prediccion de precios de vivienda"}) # Modify this message to whatever you like
+    return jsonify({'mensaje':"API para prediccion de precios de vivienda"})
 
 @app.route('/predict', methods=['POST'])
+@cross_origin()
 def predict():
     global model
     global model_columns

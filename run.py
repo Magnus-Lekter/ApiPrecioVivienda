@@ -11,9 +11,7 @@ from flask_cors import CORS
 
 
 if __name__ == '__main__':
-    app = create_app()
-    CORS(app)
-   
+    app = create_app()      
     model = joblib.load('modelo_vivienda.pkl') # Load "modelo_vivienda.pkl"
     logging.info('Modelo cargado')
     model_columns = joblib.load('model_columns.pkl') # Load "model_columns.pkl"
