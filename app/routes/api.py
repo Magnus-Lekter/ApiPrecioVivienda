@@ -7,12 +7,13 @@ import numpy as np
 import sys
 import joblib
 import logging
-# Your API definition
+from flask_cors import CORS, cross_origin
 from app.__init__ import create_app
 
 app = create_app()
 
 @app.route('/')
+@cross_origin()
 def home():
     return jsonify({'mensaje':"API para prediccion de precios de vivienda"}) # Modify this message to whatever you like
 
