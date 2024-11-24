@@ -23,7 +23,7 @@ def create_app():
         if model:
             try:
                 if request.method == 'POST':
-                    
+                        
                     json_ = request.json
                     if isinstance(json_, list) and all(isinstance(i, dict) for i in json_):
                         query = pd.get_dummies(pd.DataFrame(json_))
@@ -43,6 +43,8 @@ def create_app():
             return ('No model here to use')
 
     return app
+
+   
 
 #app = create_app()
 if __name__ == '__main__':
