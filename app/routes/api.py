@@ -11,13 +11,13 @@ from flask_cors import CORS, cross_origin
 from app import create_app
 
 app = create_app()
-
+CORS(app, resources={r"/*": {"origins": "*"}})
 @app.route('/')
 def home():
     return jsonify({'mensaje':"API para prediccion de precios de vivienda"})
 
 @app.route('/predict', methods=['POST'])
-@cross_origin()
+#@cross_origin()
 def predict():
     global model
     global model_columns
