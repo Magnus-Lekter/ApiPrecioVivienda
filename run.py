@@ -1,10 +1,6 @@
 import logging
 from app import create_app
 
-
-
-
-
 if __name__ == '__main__':
     app = create_app()      
     #model = joblib.load('modelo_vivienda.pkl') # Load "modelo_vivienda.pkl"

@@ -10,8 +10,8 @@ import logging
 from flask_cors import CORS, cross_origin
 from app import create_app
 
-main = Blueprint('main', __name__)
-app = create_app()
+app = Blueprint('main', __name__)
+#app = create_app()
 CORS(app, resources={r"/*": {"origins": "*"}})
 # Cargar el modelo y las columnas
 model = joblib.load('modelo_vivienda.pkl')
