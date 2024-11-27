@@ -7,5 +7,6 @@ if __name__ == '__main__':
     logging.info('Modelo cargado')
     #model_columns = joblib.load('model_columns.pkl') # Load "model_columns.pkl"
     logging.info('Columnas cargadas')
+    port = 5050 # Set the port
     #app.run(port=port, debug=True)
-    app.run()
+    app.run(port=port,debug=True) # Run the app

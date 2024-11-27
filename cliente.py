@@ -1,6 +1,6 @@
 import requests
 import matplotlib.pyplot as plt
-url = 'http://127.0.0.1:5000/predict'
+url = 'http://127.0.0.1:5050/predict'
 #data = [{
 #    "habitaciones": 3,
 #    "pobreza": 10,
@@ -33,7 +33,7 @@ else:
 
 data = []
 #otra predicción basada en años futuros
-future_years = list(range(2024, 2030))
+future_years = list(range(2024, 2028))
 for year in future_years:
    data.append({
             "area_total": 139,
@@ -44,9 +44,10 @@ for year in future_years:
             "nom_comuna": 30,
             "nom_ciudad": 5,
             "nom_region": 0,
-            "nom_vecindario":111,
-            "año": year
-            })
+            "nom_vecindario":111
+            #"año": year
+           })
+
 
 # Enviar la solicitud POST a la API
 response = requests.post(url, json=data, headers=headers)
@@ -56,7 +57,7 @@ if response.status_code == 200:
     predictions = response.json()['prediction']
     incremented_predictions = []
     for i, prediction in enumerate(predictions):
-        incremented_value = prediction * (1 + 0.03) ** i
+        incremented_value = prediction * (1 + 0.02) ** i
         incremented_value = round(incremented_value, 1)
         incremented_predictions.append(incremented_value)
         print(f"Predicción para el año {future_years[i]}: {incremented_value} UF")
@@ -65,7 +66,7 @@ if response.status_code == 200:
     plt.plot(future_years, incremented_predictions, marker='o')
     plt.xlabel('Año')
     plt.ylabel('Predicción de Precio (UF)')
-    plt.title('Proyección de Precios de Vivienda con Incremento del 3% Anual')
+    plt.title('Proyección de Precios de Vivienda con Incremento del 2% Anual')
     plt.grid(True)
     plt.show()
 else:

@@ -9,7 +9,7 @@ import joblib
 import logging
 from flask_cors import CORS, cross_origin
 from app import create_app
-
+import matplotlib.pyplot as plt
 main = Blueprint('main', __name__)
 #app = create_app()
 #CORS(app, resources={r"/*": {"origins": "*"}})
@@ -38,8 +38,10 @@ def predict():
                 query = query.reindex(columns=model_columns, fill_value=0)
 
                 prediction = list(model.predict(query))
-
+               
+                print('prediccion', prediction)
                 return jsonify({'prediction': prediction})
+                
             else:
                 return jsonify({'error': 'No se encontró el método POST'})
         except Exception as e:
